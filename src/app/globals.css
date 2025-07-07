@@ -7,7 +7,7 @@
   --elements: hsl(0, 0%, 100%);
 
   /* breakpoints */
-  --breakpoint-xl: "1440px";
+  --breakpoint-xl: 1440px;
 
   /* font-size */
   --text-base: 14px;
@@ -15,6 +15,9 @@
 
   /* font-family */
   --font-nunito-sans: "Nunito Sans", Arial, Helvetica, sans-serif;
+
+  /* spacing */
+  --spacing-desktop: 1440px;
 }
 
 @theme inline {
@@ -22,6 +25,7 @@
   --color-text: var(--text);
   --color-elements: var(--elements);
   --font-sans: var(--font-nunito-sans);
+  --spacing-desktop: var(--spacing-desktop);
 }
 
 @media (prefers-color-scheme: dark) {
