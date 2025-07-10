@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Country } from "@/app/types/countries";
@@ -12,21 +12,29 @@ interface GridCountriesProps {
 }
 
 const GridCountries: React.FC<GridCountriesProps> = ({ countries }) => {
-    const [selectedCountry, setSelectedCountry] = useState<string>('');
+    const [arrayCountries, setArrayCountries] = useState<Array<Country>>(countries);
+    const [selectedRegion, setSelectedRegion] = useState<string>('');
 
     const regionOptions = [
         { value: 'africa', label: 'Africa' },
-        { value: 'america', label: 'America' },
+        { value: 'americas', label: 'Americas' },
         { value: 'asia', label: 'Asia' },
         { value: 'europe', label: 'Europa' },
         { value: 'oceania', label: 'Oceania' },
     ];
 
-    const handleCountrySelect = (value: string) => {
-        setSelectedCountry(value);
-        console.log('País seleccionado:', value);
-        // Aquí puedes hacer algo con el valor seleccionado
+    const handleRegionSelect = (value: string) => {
+        setSelectedRegion(value);
     };
+
+    useEffect(() => {
+        if (selectedRegion) {
+            setArrayCountries(countries.filter((country: Country) => {
+                return country.region.toLowerCase() === selectedRegion.toLowerCase();
+            }));
+            return;
+        }
+    }, [selectedRegion, countries]);
 
     return <section>
         <div className="mb-15 flex justify-between w-full sticky top-[100px]">
@@ -44,16 +52,15 @@ const GridCountries: React.FC<GridCountriesProps> = ({ countries }) => {
             <div>
                 <CustomSelect
                     options={regionOptions}
-                    placeholder="Selecciona un país"
-                    onSelect={handleCountrySelect}
-                    initialValue="co" // Opcional: valor inicial
+                    onSelect={handleRegionSelect}
+                    initialValue="all" // Opcional: valor inicial
                 />
             </div>
         </div>
         <div className="grid grid-cols-4 gap-x-15 gap-y-10 max-md:grid-cols-2 max-lg:grid-cols-3 max-sm:flex max-sm:flex-col">
             {
-                countries.map((country: Country, index: number) => {
-                    return <Link key={index} href={`/${country.name.common.toLowerCase()}`}>
+                arrayCountries.map((country: Country, index: number) => {
+                    return <Link key={index} href={`/${country?.name?.common.toLowerCase()}`}>
                         <article className="bg-elements shadow">
                             <Image
                                 className="w-full shadow object-cover h-[150px]"
@@ -65,9 +72,9 @@ const GridCountries: React.FC<GridCountriesProps> = ({ countries }) => {
                             />
                             <div className="p-5">
                                 <h2 className="text-lg font-extrabold mb-3">{country.name.common}</h2>
-                                <p className="text-base"><span className="font-bold">Population:</span> {country.population.toLocaleString()}</p>
-                                <p className="text-base"><span className="font-bold">Region:</span> {country.region}</p>
-                                <p className="text-base"><span className="font-bold">Capital:</span> {country.capital[0]}</p>
+                                <p className="text-base"><span className="font-bold">Population:</span> {country?.population.toLocaleString()}</p>
+                                <p className="text-base"><span className="font-bold">Region:</span> {country?.region}</p>
+                                <p className="text-base"><span className="font-bold">Capital:</span> {country?.capital[0]}</p>
                             </div>
                         </article>
                     </Link>

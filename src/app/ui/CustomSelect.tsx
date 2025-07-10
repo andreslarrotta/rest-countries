@@ -14,7 +14,7 @@ interface CustomSelectProps {
     initialValue?: string;
 }
 
-export default function CustomSelect({ options, placeholder = "Selecciona una opción", onSelect, initialValue }: CustomSelectProps) {
+export default function CustomSelect({ options, placeholder = "Filter by Region", onSelect, initialValue }: CustomSelectProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string>(initialValue || '');
     const selectRef = useRef<HTMLDivElement>(null);
