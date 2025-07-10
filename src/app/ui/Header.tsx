@@ -4,10 +4,12 @@ import { useState } from "react";
 
 import Image from "next/image";
 
-export const Header = () => {
+import type { ReactElement } from "react";
+
+const Header = (): ReactElement => {
     const [darkMode, setDarkMode] = useState(false);
 
-    return <header className="w-full bg-elements shadow">
+    return <header className="w-full bg-elements shadow sticky top-0 z-10">
         <div className="flex justify-between items-center max-w-desktop h-[70px] m-auto px-5">
             <div className="text-lg font-extrabold">
                 Where in the world?
@@ -39,3 +41,5 @@ export const Header = () => {
         </div>
     </header >
 }
+
+export default Header;
