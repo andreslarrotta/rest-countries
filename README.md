@@ -1,40 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Aplicación de Consulta de Países con Next.js y Tailwind CSS 🌍
 
-## Getting Started
+## Desarrollado por: Andres Felipe Larrotta Pino
 
-First, run the development server:
+¡Hola! Bienvenido al repositorio de esta prueba técnica. Esta aplicación es un desarrollo Full Stack con Next.js (utilizando el App Router), estilizado con Tailwind CSS, y consume la API pública de RestCountries para mostrar y filtrar información sobre países.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 🌟 Visión General del Desarrollo por Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Para mantener el proyecto organizado, escalable y con un historial de cambios claro, la implementación se gestionó a través de un flujo de trabajo basado en features (Feature Branching). Cada nueva funcionalidad o mejora fue desarrollada en una rama dedicada, lo que permitió trabajar de manera aislada y segura, minimizando conflictos y facilitando la revisión del código.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Cada feature (característica) o tarea específica tuvo su propia rama, partiendo de la rama principal `master`. Una vez completada y probada la funcionalidad, la rama de la feature fue fusionada de nuevo a la rama principal (en este caso, main) a través de un merge.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Este enfoque asegura que el historial del proyecto sea lineal y fácil de seguir, reflejando el progreso incremental y las decisiones de diseño a lo largo del desarrollo.
 
-## Learn More
+### 🌳 Flujo de Ramas y Merges Detallado
 
-To learn more about Next.js, take a look at the following resources:
+A continuación, se detalla el flujo de las ramas y los merges realizados, explicando el propósito de cada rama y cómo se integró al proyecto principal. Esto te permitirá ver el proceso de desarrollo paso a paso y entender cómo se construyó cada funcionalidad.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### 1. master (Rama Principal)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Propósito: Es la rama estable que siempre representa la versión desplegable de la aplicación. Todos los merges finales de las features se realizan sobre esta rama.
 
-## Deploy on Vercel
+#### 2. dev
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Propósito: Es la rama que une todas las funcionalidades features, evitando manipular la rama master y asi no tener errores en producción.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### 3. feat-[component]
 
-para la docuemntacion 
-https://restcountries.com/v3.1/name/angola?fields=name,capital,region,flags
-https://restcountries.com/v3.1/alpha/ecu?fields=name
+Propósito: Implementar las funcionalidadas de cada parte del proyecto, asi teniendo un orden y mejor flujo para el progreso.
+
+
+Este proceso de desarrollo por features garantiza un código base limpio, un historial de Git comprensible y una implementación estructurada de cada requisito.
+
+¡Gracias por revisar el proyecto!
