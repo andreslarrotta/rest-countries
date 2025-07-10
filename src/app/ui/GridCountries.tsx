@@ -14,6 +14,8 @@ interface GridCountriesProps {
 const GridCountries: React.FC<GridCountriesProps> = ({ countries }) => {
     const [arrayCountries, setArrayCountries] = useState<Array<Country>>(countries);
     const [selectedRegion, setSelectedRegion] = useState<string>('');
+    const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     const regionOptions = [
         { value: 'africa', label: 'Africa' },
@@ -36,6 +38,23 @@ const GridCountries: React.FC<GridCountriesProps> = ({ countries }) => {
         }
     }, [selectedRegion, countries]);
 
+    useEffect(() => {
+        if (searchTerm === '') {
+            setFilteredCountries(arrayCountries);
+            return;
+        }
+
+        const lowercasedSearchTerm = searchTerm.toLowerCase();
+        const newFilteredCountries = arrayCountries.filter(country =>
+            country.name.common.toLowerCase().includes(lowercasedSearchTerm)
+        );
+        setFilteredCountries(newFilteredCountries);
+    }, [searchTerm, arrayCountries]);
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
+
     return <section>
         <div className="mb-15 flex justify-between w-full sticky top-[100px]">
             <div className="sticky top-[200px] w-full">
@@ -47,19 +66,27 @@ const GridCountries: React.FC<GridCountriesProps> = ({ countries }) => {
                     height={20}
                     priority
                 />
-                <input id="filter" name="filter" className="text-base text-white dark:bg-elements bg-elements shadow h-[50px] pl-15 w-[35%] max-md:w-[90%] rounded" type="text" placeholder="Search for a country..." />
+                <input
+                    id="filter"
+                    name="filter"
+                    className="text-base text-white dark:bg-elements bg-elements shadow h-[50px] pl-15 w-[35%] max-md:w-[90%] rounded"
+                    type="text"
+                    placeholder="Search for a country..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
             </div>
             <div>
                 <CustomSelect
                     options={regionOptions}
                     onSelect={handleRegionSelect}
-                    initialValue="all" // Opcional: valor inicial
+                    initialValue="all" 
                 />
             </div>
         </div>
         <div className="grid grid-cols-4 gap-x-15 gap-y-10 max-md:grid-cols-2 max-lg:grid-cols-3 max-sm:flex max-sm:flex-col">
             {
-                arrayCountries.map((country: Country, index: number) => {
+                filteredCountries.map((country: Country, index: number) => {
                     return <Link key={index} href={`/${country?.name?.common.toLowerCase()}`}>
                         <article className="bg-elements shadow">
                             <Image
