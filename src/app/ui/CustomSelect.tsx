@@ -69,7 +69,7 @@ export default function CustomSelect({ options, placeholder = "Filter by Region"
 
             {isOpen && (
                 <div
-                    className="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow dark:bg-elements focus:outline-none z-10"
+                    className="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow dark:bg-elements focus:outline-none z-10 bg-elements"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
@@ -80,7 +80,7 @@ export default function CustomSelect({ options, placeholder = "Filter by Region"
                                 key={option.value}
                                 onClick={() => handleOptionClick(option)}
                                 className={`block w-full text-left px-4 py-2 text-sm ${selectedValue === option.value
-                                    ? 'bg-background text-white dark:bg-elements'
+                                    ? 'text-background bg-background dark:text-white dark:bg-elements'
                                     : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600' // Estilo normal
                                     }
                 `}
