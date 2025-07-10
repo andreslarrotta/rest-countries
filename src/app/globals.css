@@ -41,3 +41,7 @@ body {
   color: var(--text);
   font-family: var(--font-sans);
 }
+
+input {
+  color: var(--text);
+}
